@@ -5,27 +5,51 @@ name: Node.js CI
 
 on:
   push:
-    branches: [ master ]
+    branches: [ main ]
   pull_request:
-    branches: [ master ]
+    branches: [ main ]
 
 jobs:
-  build:
+    install-and-test:
+      runs-on: ubuntu-latest
 
-    runs-on: ubuntu-latest
+      strategy:
+        matrix:
+          node-version: [16.x]
 
-    strategy:
-      matrix:
-        node-version: [16.x]
-        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+      steps:
+        - uses: actions/checkout@master
 
-    steps:
-    - uses: actions/checkout@v3
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v3
-      with:
-        node-version: ${{ matrix.node-version }}
-        cache: 'npm'
-    - run: npm ci
-    - run: npm run build --if-present
-    - run: npm test
+        - name: Set up Node.js ${{ matrix.node-version }}
+          uses: actions/setup-node@master
+          with:
+            node-version: ${{ matrix.node-version }}
+
+        - name: Install packages
+          run: yarn install --frozen-lockfile
+
+        - name: Test
+          run: yarn test
+
+          env:
+             CI: true
+
+        - name: Checkout 
+          uses: actions/checkout@v2
+
+        - name: Login to Docker Hub
+          uses: docker/login-action@v1
+          with:
+            username: ${{ secrets.DOCKER_HUB_USERNAME }}
+            password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
+
+        - name: Set up Docker Buildx
+          uses: docker/setup-buildx-action@v1
+
+        - name: Build and push
+          uses: docker/build-push-action@v2
+          with:
+            context: .
+            file: ./Dockerfile
+            push: true
+            tags: ${{ secrets.DOCKER_HUB_USERNAME }}/numerical_method_backend:latest
