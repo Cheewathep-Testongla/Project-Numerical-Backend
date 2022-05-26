@@ -7,7 +7,7 @@
   },
   "servers": [
     {
-      "url": "http://localhost:3001"
+      "url": "https://numericalbackend.herokuapp.com"
     }
   ],
   "paths": {
@@ -28,19 +28,24 @@
             }
           }
         },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
         "servers": [
           {
-            "url": "http://localhost:3001"
+            "url": "https://numericalbackend.herokuapp.com"
           }
         ]
       },
       "servers": [
         {
-          "url": "http://localhost:3001"
+          "url": "https://numericalbackend.herokuapp.com"
         }
       ]
     },
-    "/user": {
+    "/users": {
       "get": {
         "description": "Store Login Data",
         "responses": {
@@ -57,18 +62,87 @@
             }
           }
         },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
         "servers": [
           {
-            "url": "http://localhost:3001"
+            "url": "https://numericalbackend.herokuapp.com"
           }
         ]
       },
       "servers": [
         {
-          "url": "http://localhost:3001"
+          "url": "https://numericalbackend.herokuapp.com"
+        }
+      ]
+    },
+    "/login": {
+      "post": {
+        "description": "Login to get TOKEN to use API",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/login_body"
+              },
+              "examples": {
+                "0": {
+                  "value": "{\"email\": \"s620406216049@email.kmutnb.ac.th\",\"password\": \"55555\"}"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "All Header data",
+            "content": {
+              "application/json; charset=utf-8": {
+                "examples": {
+                  "0": {
+                    "value": "{\"Token\":\"Example TOKEN\"}"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "servers": [
+          {
+            "url": "https://numericalbackend.herokuapp.com"
+          }
+        ]
+      },
+      "servers": [
+        {
+          "url": "https://numericalbackend.herokuapp.com"
         }
       ]
     }
   },
-  "components": {}
+  "components": {
+    "schemas": {
+      "login_body": {
+        "type": "object",
+        "properties": {
+          "password": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  }
 }
