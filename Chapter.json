@@ -214,7 +214,7 @@
       "Single_Trapezoidal_Rule": [
         {
           "id": 1,
-          "equation": "(4*x^5)-(3*(x^4)-(6*x)+2) | ",
+          "equation": "(4*(x^5))-(3*(x^4))-(6*x)+2) | ",
           "Upper": "8 | ",
           "Lower": "2"
         },
@@ -228,7 +228,7 @@
       "Composite_Trapezoidal_Rule": [
         {
           "id": 1,
-          "equation": "(4*x^5)-(3*(x^4)-(6*x)+2) | ",
+          "equation": "(4*(x^5))-(3*(x^4))-(6*x)+2) | ",
           "Upper": "8 | ",
           "Lower": "2 | ",
           "Scope": "[2,4,6] "
@@ -244,7 +244,7 @@
       "Simpson_Rule": [
         {
           "id": 1,
-          "equation": "(4*x^5)-(3*(x^4)-(6*x)+2) | ",
+          "equation": "(4*(x^5))-(3*(x^4))-(6*x)+2) | ",
           "Upper": "8 | ",
           "Lower": "2"
         },
