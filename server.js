@@ -20,7 +20,8 @@ const swaggerDocument = require('./Cheewathep-Testongla-NumericalAPI-0.1-resolve
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 app.use(router)
-app.listen(3001,()=>
+
+app.listen(process.env.PORT || 3001,()=>
 {
-    console.log("JSON SERVER is running!!!");
+    console.log("SERVER IS RUNNING!!!");
 })
