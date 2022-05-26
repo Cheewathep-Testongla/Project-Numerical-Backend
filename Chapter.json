@@ -172,6 +172,14 @@
           "X": "250"
         }
       ],
+      "Spline": [
+        {
+          "id": 1,
+          "metrixX": "[2,4,6,8,10] | ",
+          "metrixY": "[9.5,8.0,10.5,39.5,72.5] | ",
+          "X": "7"
+        }
+      ],
       "Linear_Regression": [
         {
           "id": 1,
@@ -285,10 +293,11 @@
       ]
     }
   ],
-  "User": [
+  "users": [
     {
       "email": "s620406216049@email.kmutnb.ac.th",
-      "password": "55555"
+      "password": "$2a$10$BgLqO1bvrH2hwhSvn2ek0uupQRuUQKJ.cbE6g4kR8KCOh.1XbZJz2",
+      "id": 1
     }
   ]
 }
