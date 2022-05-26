@@ -5,7 +5,8 @@ const router = jsonServer.router('./Chapter.json')
 const middlewares = jsonServer.defaults({noCors:true})
 var cors = require("cors");
 const rules = auth.rewriter({
-    "Numerical_Method":660
+    "Numerical_Method":660,
+    "users":660
 })
 app.db = router.db
 app.use(cors())
