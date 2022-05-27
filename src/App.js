@@ -15,7 +15,7 @@ function App() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Learn React
+          Backend
         </a>
         <h1>Test CI/CD</h1>
       </header>
