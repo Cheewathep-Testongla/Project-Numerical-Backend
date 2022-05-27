@@ -26,13 +26,13 @@ jobs:
             node-version: ${{ matrix.node-version }}
 
         - name: Install packages
-          run: yarn install --frozen-lockfile
+          run: yarn install 
 
-#         - name: Test
-#           run: yarn test
+        - name: Test
+          run: yarn test 
 
-#           env:
-#              CI: true
+          env:
+             CI: true
 
         - name: Checkout 
           uses: actions/checkout@v2
@@ -53,3 +53,17 @@ jobs:
             file: ./Dockerfile
             push: true
             tags: ${{ secrets.DOCKER_HUB_USERNAME }}/numerical_method_backend:latest
+    # Deploy to Heroku
+    Deploy_Heroku:
+            runs-on: ubuntu-latest
+            strategy:
+              matrix:
+                node-version: [16.x]
+            steps:
+            - uses: actions/checkout@v2
+            - uses: akhileshns/heroku-deploy@v3.12.12 
+              with:
+                branch: main
+                heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
+                heroku_app_name: "numericalbackend" 
+                heroku_email: "nongton2544@gmail.com"
